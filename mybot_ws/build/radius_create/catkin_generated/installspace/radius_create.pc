@@ -1,0 +1,8 @@
+prefix=/home/anhle/mybot_ws/install
+
+Name: radius_create
+Description: Description of radius_create
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 

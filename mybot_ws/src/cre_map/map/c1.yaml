@@ -1,0 +1,7 @@
+image: /home/leduvanh/mybot_ws/src/cre_map/map/c1.pgm
+resolution: 0.050000
+origin: [-22.686382, -17.065033, 0]
+negate: 0
+occupied_thresh: 0.65
+free_thresh: 0.196
+

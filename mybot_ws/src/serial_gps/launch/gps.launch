@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<launch>
+  <node pkg="serial_gps" type="gps_node" name="gps_node" output="screen">
+        <param name="enable_gps" value="true"/> 
+        <param name="gps_port" value="/dev/ttyUSB0"/>
+        <param name="gps_baud" value="115200"/>
+        <param name="ref_lat" value="10.77462"/>
+  <param name="ref_lon" value="106.65962"/>
+  </node>
+</launch>
+

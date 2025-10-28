@@ -1,0 +1,8 @@
+prefix=/home/anhle/mybot_ws/install
+
+Name: deli_robo
+Description: Description of deli_robo
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 

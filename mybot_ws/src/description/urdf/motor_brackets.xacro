@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+<robot name="motor_brackets" 
+       xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <xacro:macro name="motor_bracket" params="fb lr parent translateX translateY">
+    <link name="motor_bracket_${fb}_${lr}_link">
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0" /> 
+            <geometry>
+                <box size="${motor_bracket_length} ${motor_bracket_width} ${motor_bracket_height}" />
+            </geometry>
+            <material name="White" />
+        </visual>
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 0" /> 
+            <geometry>
+                <box size="${motor_bracket_length} ${motor_bracket_width} ${motor_bracket_height}" />
+            </geometry>
+            <material name="White" />
+        </collision>
+        <inertial>
+            <mass value="${motor_bracket_mass}" />
+            <origin xyz="0 0 0" />
+            <cuboid_inertia m="${motor_bracket_mass}" l="${motor_bracket_length}" w="${motor_bracket_width}" h="${motor_bracket_height}" />
+        </inertial>
+    </link>
+
+    <joint name="motor_bracket_${fb}_${lr}_joint" type="fixed">
+        <parent link="${parent}_link" />
+        <child link="motor_bracket_${fb}_${lr}_link" />
+        <origin xyz="${translateX} 
+                     ${translateY} 
+                     ${- base_height/2 - motor_bracket_height/2}" 
+                rpy="0 0 0" />
+    </joint>  
+  </xacro:macro>
+
+<!-- MOTOR BRACKETS -->
+  <motor_bracket fb="front" lr="left" parent="base" 
+                               		translateX="${base_length/2 - motor_bracket_offset_from_base_front}" 
+                               		translateY="${base_width/2 - motor_bracket_width/2}" />
+  <motor_bracket fb="front" lr="right" parent="base" 
+                               		translateX="${base_length/2 - motor_bracket_offset_from_base_front}" 
+                               		translateY="${- base_width/2 + motor_bracket_width/2}" />
+  <motor_bracket fb="back" lr="left" parent="base" 
+                               		translateX="${- base_length/2 + motor_bracket_offset_from_base_back}" 
+                               		translateY="${base_width/2 - motor_bracket_width/2}" />
+  <motor_bracket fb="back" lr="right" parent="base" 
+                               		translateX="${- base_length/2 + motor_bracket_offset_from_base_back}" 
+                               		translateY="${- base_width/2 + motor_bracket_width/2}" />
+
+</robot>

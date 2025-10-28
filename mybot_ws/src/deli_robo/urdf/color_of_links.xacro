@@ -1,0 +1,60 @@
+<?xml version="1.0"?>
+<robot name="delivery_robot" 
+       xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <gazebo reference="base_link">
+    <material> Gazebo/Grey  </material>
+    <turnGravityOff> false </turnGravityOff>
+  </gazebo>
+
+  <gazebo reference="wheel_back_left_link">
+    <material> Gazebo/Residential </material>
+    <turnGravityOff> false </turnGravityOff>
+  </gazebo>
+
+  <gazebo reference="wheel_back_right_link">
+    <material> Gazebo/Residential </material>
+    <turnGravityOff> false </turnGravityOff>
+  </gazebo>
+
+  <gazebo reference="wheel_front_left_link">
+    <material> Gazebo/Residential </material>
+    <turnGravityOff> false </turnGravityOff>
+  </gazebo>
+
+  <gazebo reference="wheel_front_right_link">
+    <material> Gazebo/Residential </material>
+    <turnGravityOff> false </turnGravityOff>
+  </gazebo>
+
+  <gazebo reference="sonar_link">
+    <material> Gazebo/Residential  </material>
+    <turnGravityOff> false </turnGravityOff>
+  </gazebo>
+
+  <gazebo reference="stereo_link">
+    <material> Gazebo/san_fauxcity_sign</material>
+    <turnGravityOff> false </turnGravityOff>
+  </gazebo>
+
+  <gazebo reference="gps_ins_point_link">
+    <material> Gazebo/Purple </material>
+    <turnGravityOff> false </turnGravityOff>
+  </gazebo>
+
+  <gazebo reference="container_link">
+    <material> Gazebo/DarkYellow </material>
+    <turnGravityOff> false </turnGravityOff>
+  </gazebo>
+
+  <gazebo reference="lid_container_link">
+    <material> Gazebo/DarkGrey </material>
+    <turnGravityOff> false </turnGravityOff>
+  </gazebo>
+
+  <gazebo reference="lidar_point_link">
+    <material> Gazebo/Orange </material>
+    <turnGravityOff> false </turnGravityOff>
+  </gazebo>
+
+</robot>

@@ -1,0 +1,8 @@
+prefix=/home/anhle/mybot_ws/devel
+
+Name: pcl_lidar
+Description: Description of pcl_lidar
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 

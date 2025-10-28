@@ -1,0 +1,5 @@
+<launch>
+    <node name="map_server" pkg="map_server" type="map_server" args="$(find cre_map)/map/c11.yaml">
+        <remap from="/map" to="/static_map"/>
+     </node>
+</launch>

@@ -1,0 +1,3 @@
+<launch>
+  <node pkg="rviz" type="rviz" name="show_rviz" args="-d $(find gbot_core)/rviz/demo.rviz"/>    
+</launch>

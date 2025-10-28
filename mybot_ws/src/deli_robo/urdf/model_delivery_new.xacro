@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<robot name="model_delivery_new"
+       xmlns:xacro="http://www.ros.org/wiki/xacro">
+       
+  <xacro:include filename="$(find deli_robo)/urdf/base_link.xacro" />
+  <xacro:include filename="$(find deli_robo)/urdf/wheels_link.xacro" />
+  <xacro:include filename="$(find deli_robo)/urdf/group_sonar_link.xacro" />
+  <xacro:include filename="$(find deli_robo)/urdf/imu_link.xacro" />
+  <xacro:include filename="$(find deli_robo)/urdf/container_link.xacro" />
+  <xacro:include filename="$(find deli_robo)/urdf/lidar_link.xacro" />
+  <xacro:include filename="$(find deli_robo)/urdf/color_of_links.xacro" />
+
+
+</robot>

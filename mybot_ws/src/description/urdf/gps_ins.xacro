@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<robot name="imu"
+       xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+<!-- GPS/INS -->
+  <link name="gps_ins_link">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://description/model/MTi-G/mesh/MTi-G.dae" />
+      </geometry>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <box size="${gps_ins_length} ${gps_ins_width} ${gps_ins_height}" />
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="${gps_ins_mass}" />
+      <origin xyz="0 0 0" />
+      <cuboid_inertia m="${gps_ins_mass}" l="${gps_ins_length}" w="${gps_ins_width}" h="${gps_ins_height}" />
+    </inertial>
+  </link>
+
+  <joint name="gps_ins_joint" type="fixed">
+    <origin xyz="${base_length/2 - gps_ins_offset_from_base_front}
+                 0
+                 ${base_height/2 - gps_ins_offset_from_base_top}" rpy="0 0 0" />
+    <parent link="base_link" />
+    <child link="gps_ins_link" />
+  </joint>
+
+  <link name="gps_ins_point_link" />
+
+  <joint name="gps_ins_point_joint" type="fixed">
+    <origin xyz="0 0 0" rpy="${pi} 0 0" />
+    <parent link="gps_ins_link" />
+    <child link="gps_ins_point_link" />
+  </joint>
+
+</robot>

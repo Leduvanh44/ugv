@@ -1,0 +1,8 @@
+prefix=/home/anhle/mybot_ws/devel
+
+Name: mqtt_start
+Description: Description of mqtt_start
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 

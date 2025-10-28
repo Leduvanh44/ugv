@@ -1,0 +1,122 @@
+<?xml version="1.0"?>
+<robot name="motor_shafts" 
+       xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <xacro:macro name="motor_shaft" params="fb lr parent translateY">
+    <link name="motor_shaft_${fb}_${lr}_link">
+        <visual>
+            <origin xyz="0 0 0" rpy="${pi/2} 0 0" /> 
+            <geometry>
+                <cylinder length="${motor_shaft_height}" radius="${motor_shaft_radius}" />
+            </geometry>
+            <material name="Blue" />
+        </visual>
+        <collision>
+            <origin xyz="0 0 0" rpy="${pi/2} 0 0" /> 
+            <geometry>
+                <cylinder length="${motor_shaft_height}" radius="${motor_shaft_radius}" />
+            </geometry>
+            <material name="Blue" />
+        </collision>
+        <inertial>
+            <mass value="${motor_shaft_mass}" />
+            <origin xyz="0 0 0" />
+            <cylinder_inertia  m="${motor_shaft_mass}" r="${motor_shaft_radius}" h="${motor_shaft_height}" />
+        </inertial>
+    </link>
+
+    <joint name="motor_shaft_${fb}_${lr}_joint" type="continuous">
+        <parent link="${parent}_${fb}_${lr}_link" />
+        <child link="motor_shaft_${fb}_${lr}_link" />
+        <origin xyz="0 
+                     ${translateY}
+                     0" 
+                rpy="0 0 0" />
+        <axis xyz="0 1 0" rpy="0 0 0" />
+        <dynamics damping="0.1" friction="0.5" />
+    </joint>  
+  </xacro:macro>
+
+  <xacro:macro name="wheel_balancer" params="lr parent translateY">
+    <link name="wheel_balancer_${lr}_link">
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0" /> 
+            <geometry>
+                <box size="${wheel_balancer_length} ${wheel_balancer_width} ${wheel_balancer_height}" />
+            </geometry>
+            <material name="White" />
+        </visual>
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 0" /> 
+            <geometry>
+                <box size="${wheel_balancer_length} ${wheel_balancer_width} ${wheel_balancer_height}" />
+            </geometry>
+            <material name="White" />
+        </collision>
+        <inertial>
+            <mass value="${wheel_balancer_mass}" />
+            <origin xyz="0 0 0" />
+            <cuboid_inertia m="${wheel_balancer_mass}" l="${wheel_balancer_length}" w="${wheel_balancer_width}" h="${wheel_balancer_height}" />
+	</inertial>
+    </link>
+
+    <joint name="wheel_balancer_${lr}_joint" type="fixed">
+        <parent link="${parent}_back_${lr}_link" />
+        <child link="wheel_balancer_${lr}_link" />
+        <origin xyz="0 
+                     ${translateY}
+                     0" 
+                rpy="0 0 0" />
+    </joint>  
+  </xacro:macro>
+
+  <xacro:macro name="balancer_shaft" params="fb lr parent translateX">
+    <link name="balancer_shaft_${fb}_${lr}_link">
+        <visual>
+            <origin xyz="0 0 0" rpy="${pi/2} 0 0" />
+            <geometry>
+                <cylinder length="${balancer_shaft_height}" radius="${balancer_shaft_radius}" />
+            </geometry>
+            <material name="Blue" />
+        </visual>
+        <collision>
+            <origin xyz="0 0 0" rpy="${pi/2} 0 0" /> 
+            <geometry>
+                <cylinder length="${balancer_shaft_height}" radius="${balancer_shaft_radius}" />
+            </geometry>
+            <material name="Blue" />
+        </collision>
+        <inertial>
+            <mass value="${balancer_shaft_mass}" />
+            <origin xyz="0 0 0" />
+            <cylinder_inertia  m="${balancer_shaft_mass}" r="${balancer_shaft_radius}" h="${balancer_shaft_height}" />
+        </inertial>
+    </link>
+
+    <joint name="balancer_shaft_${fb}_${lr}_joint" type="continuous">
+        <parent link="${parent}_${lr}_link" />
+        <child link="balancer_shaft_${fb}_${lr}_link" />
+        <origin xyz="${translateX} 
+                     0
+                     0" 
+                rpy="0 0 0" />
+        <axis xyz="0 1 0" rpy="0 0 0" />
+        <dynamics damping="0.1" friction="0.5" />
+    </joint>   
+  </xacro:macro>
+
+<!-- MOTOR SHAFTS -->
+  <motor_shaft fb="front" lr="left" parent="motor_bracket" translateY="${motor_shaft_offset_from_bracket}" />
+  <motor_shaft fb="front" lr="right" parent="motor_bracket" translateY="${-motor_shaft_offset_from_bracket}" />
+  <motor_shaft fb="back" lr="left" parent="motor_bracket" translateY="${motor_shaft_offset_from_bracket}" />
+  <motor_shaft fb="back" lr="right" parent="motor_bracket" translateY="${-motor_shaft_offset_from_bracket}" />
+
+  <wheel_balancer lr="left" parent="motor_shaft" translateY="${wheel_balancer_offset_from_motor_shaft}" />
+  <wheel_balancer lr="right" parent="motor_shaft" translateY="${-wheel_balancer_offset_from_motor_shaft}" />
+
+  <balancer_shaft fb="middle" lr="left" parent="wheel_balancer" translateX="${balancer_shaft_offset_from_balancer_center}" />
+  <balancer_shaft fb="middle" lr="right" parent="wheel_balancer" translateX="${balancer_shaft_offset_from_balancer_center}" />
+  <balancer_shaft fb="back" lr="left" parent="wheel_balancer" translateX="${-balancer_shaft_offset_from_balancer_center}" />
+  <balancer_shaft fb="back" lr="right" parent="wheel_balancer" translateX="${-balancer_shaft_offset_from_balancer_center}" />
+
+</robot>

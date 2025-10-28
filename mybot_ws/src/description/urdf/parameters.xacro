@@ -1,0 +1,76 @@
+<?xml version="1.0"?>
+<robot name="parameters" 
+       xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <!-- Colors -->
+  <material name="Black"> <color rgba="0.0 0.0 0.0 1.0"/> </material>
+  <material name="Red"> <color rgba="0.8 0.0 0.0 1.0"/> </material>
+  <material name="White"> <color rgba="1.0 1.0 1.0 1.0"/> </material>
+  <material name="Blue"> <color rgba="0.0 0.0 0.8 1.0"/> </material>
+  <material name="Grey"> <color rgba="0.75 0.75 0.75 1.0"/> </material>
+  <material name="Yellow"> <color rgba="0.98 0.75 0.35 1.0"/> </material>
+
+  <!-- Base parameters -->
+  <xacro:property name="base_length" value="0.671" />
+  <xacro:property name="base_width" value="0.631" />
+  <xacro:property name="base_height" value="0.432" />
+  <xacro:property name="base_mass" value="15" /> <!-- Not measured! -->
+
+  <!-- Motor Bracket parameters -->
+  <xacro:property name="motor_bracket_length" value="0.075" /> <!-- Not measured! -->
+  <xacro:property name="motor_bracket_width" value="0.030" /> <!-- Not measured! -->
+  <xacro:property name="motor_bracket_height" value="0.045" /> <!-- Not measured! -->
+  <xacro:property name="motor_bracket_mass" value="0.01" /> <!-- Not measured! -->
+  <xacro:property name="motor_bracket_offset_from_base_front" value="0.060" />
+  <xacro:property name="motor_bracket_offset_from_base_back" value="0.150" />
+
+  <!-- Motor Shaft parameters -->
+  <xacro:property name="motor_shaft_radius" value="0.006" />
+  <xacro:property name="motor_shaft_height" value="0.12" /> <!-- Not measured! -->
+  <xacro:property name="motor_shaft_mass" value="0.30" /> <!-- Not measured! -->
+  <xacro:property name="motor_shaft_offset_from_bracket" value="0.04" /> <!-- Not measured! -->
+
+  <!-- Wheel Balancer parameters -->
+  <xacro:property name="wheel_balancer_length" value="0.322" />
+  <xacro:property name="wheel_balancer_width" value="0.045" />
+  <xacro:property name="wheel_balancer_height" value="0.055" />
+  <xacro:property name="wheel_balancer_mass" value="1.5" /> <!-- Not measured! -->
+  <xacro:property name="wheel_balancer_offset_from_motor_shaft" value="0.015" /> <!-- Not measured! -->
+
+  <!-- Balancer Shaft parameters -->
+  <xacro:property name="balancer_shaft_radius" value="0.006" /> <!-- Not measured! -->
+  <xacro:property name="balancer_shaft_height" value="0.10" /> <!-- Not measured! -->
+  <xacro:property name="balancer_shaft_mass" value="0.17" /> <!-- Not measured! -->
+  <xacro:property name="balancer_shaft_offset_from_balancer_center" value="0.139" />
+
+  <!-- Wheel parameters -->
+  <xacro:property name="wheel_radius" value="0.108" />
+  <xacro:property name="wheel_height" value="0.025" />
+  <xacro:property name="wheel_mass" value="0.65" /> <!-- Not measured! -->
+  <xacro:property name="wheel_offset_from_balancer_shaft" value="0.045" /> <!-- Not measured! -->
+
+  <!-- Lidar parameters -->
+  <xacro:property name="lidar_length" value="0.06" />
+  <xacro:property name="lidar_width" value="0.06" />
+  <xacro:property name="lidar_height" value="0.087" />
+  <xacro:property name="lidar_mass" value="0.27" />
+  <xacro:property name="lidar_reception_plane" value="0.052" />
+  <xacro:property name="lidar_offset_from_base_front" value="0.10" />
+
+  <!-- Stereo parameters -->
+  <xacro:property name="stereo_length" value="0.0474" />
+  <xacro:property name="stereo_width" value="0.157" />
+  <xacro:property name="stereo_height" value="0.036" />
+  <xacro:property name="stereo_mass" value="0.342" />
+  <xacro:property name="stereo_baseline" value="0.12" />
+  <xacro:property name="stereo_offset_from_base_top" value="0.085" />
+
+  <!-- GPS/INS parameters -->
+  <xacro:property name="gps_ins_length" value="0.07" />
+  <xacro:property name="gps_ins_width" value="0.06" />
+  <xacro:property name="gps_ins_height" value="0.04" />
+  <xacro:property name="gps_ins_mass" value="0.068" />
+  <xacro:property name="gps_ins_offset_from_base_front" value="0.03" />
+  <xacro:property name="gps_ins_offset_from_base_top" value="0" />
+
+</robot>

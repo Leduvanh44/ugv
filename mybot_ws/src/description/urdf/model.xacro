@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<robot name="model"
+       xmlns:xacro="http://www.ros.org/wiki/xacro">
+       
+  <xacro:include filename="$(find description)/urdf/parameters.xacro" />
+  <xacro:include filename="$(find description)/urdf/utilities.xacro" />
+
+  <xacro:include filename="$(find description)/urdf/base.xacro" />
+  <xacro:include filename="$(find description)/urdf/motor_brackets.xacro" />
+  <xacro:include filename="$(find description)/urdf/motor_shafts.xacro" />
+  <xacro:include filename="$(find description)/urdf/wheels.xacro" />
+  <xacro:include filename="$(find description)/urdf/lidar.xacro" />
+  <xacro:include filename="$(find description)/urdf/stereo.xacro" />
+  <xacro:include filename="$(find description)/urdf/gps_ins.xacro" />
+
+</robot>

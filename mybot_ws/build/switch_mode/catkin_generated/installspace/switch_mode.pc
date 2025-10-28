@@ -1,0 +1,8 @@
+prefix=/home/anhle/mybot_ws/install
+
+Name: switch_mode
+Description: Description of switch_mode
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 

@@ -1,0 +1,8 @@
+image: /home/leduvanh/mybot_ws/src/cre_map/map/bkfood.pgm
+resolution: 0.050000
+origin: [-92.190329, -96.694885, 0.000000]
+negate: 0
+orientation: [1.57, 0, 0, 1]
+occupied_thresh: 0.65
+free_thresh: 0.196
+

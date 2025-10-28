@@ -1,0 +1,59 @@
+<?xml version="1.0"?>
+<robot name="Lidar" 
+       xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+       <link
+       name="lidar_point_link">
+       <inertial>
+         <origin
+           xyz="-0.00064383 9.2927E-10 0.037832"
+           rpy="0 0 0" />
+         <mass
+           value="0.27" />
+         <inertia
+           ixx="0.00020894"
+           ixy="1.295E-12"
+           ixz="-1.1307E-06"
+           iyy="0.00021335"
+           iyz="-4.2308E-12"
+           izz="0.00011244" />
+       </inertial>
+       <visual>
+         <origin
+           xyz="0 0 0"
+           rpy="0 0 0" />
+         <geometry>
+           <mesh
+             filename="package://deli_robo/meshes/lidar_point_link.STL" />
+         </geometry>
+         <material
+           name="">
+           <color
+             rgba="0 0 0 1" />
+         </material>
+       </visual>
+       <collision>
+         <origin
+           xyz="0 0 0"
+           rpy="0 0 0" />
+         <geometry>
+           <mesh
+             filename="package://deli_robo/meshes/lidar_point_link.STL" />
+         </geometry>
+       </collision>
+     </link>
+     <joint
+       name="joint_lidar"
+       type="fixed">
+       <origin
+         xyz="0.245 -0.0051 0.3"
+         rpy="0 0 0" />
+       <parent
+         link="container_link" />
+       <child
+         link="lidar_point_link" />
+       <axis
+         xyz="0 0 0" />
+     </joint>
+
+</robot>

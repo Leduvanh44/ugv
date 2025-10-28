@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<robot name="base" 
+       xmlns:xacro="http://www.ros.org/wiki/xacro">
+ 
+       <link name="footprint_link" />
+
+       <link
+       name="base_link">
+       <inertial>
+         <origin
+           xyz="-0.037666 0.19446 0.026"
+           rpy="0 0 0" />
+         <mass
+           value="15.0" />
+         <inertia
+           ixx="0"
+           ixy="0"
+           ixz="0"
+           iyy="0"
+           iyz="0"
+           izz="0" />
+       </inertial>
+       <visual>
+         <origin
+           xyz="0 0 0"
+           rpy="0 0 0" />
+         <geometry>
+           <mesh
+             filename="package://deli_robo/meshes/base_link.STL" />
+         </geometry>
+         <material
+           name="">
+           <color
+             rgba="0.75294 0.75294 0.75294 1" />
+         </material>
+       </visual>
+       <collision>
+         <origin
+           xyz="0 0 0"
+           rpy="0 0 0" />
+         <geometry>
+           <mesh
+             filename="package://deli_robo/meshes/base_link.STL" />
+         </geometry>
+       </collision>
+     </link>
+
+     <joint name="base_joint" type="fixed">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <parent link="footprint_link" />
+      <child link="base_link" />
+    </joint>
+
+</robot>

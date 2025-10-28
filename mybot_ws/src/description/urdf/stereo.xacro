@@ -1,0 +1,50 @@
+<?xml version="1.0"?>
+<robot name="stereo"
+       xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+<!-- STEREO -->
+  <link name="stereo_link">
+    <visual>
+        <origin xyz="0 0 0" rpy="${pi/2} 0 ${pi/2}" />
+        <geometry>
+            <mesh filename="package://description/model/Bumblebee-2/mesh/Bumblebee-2.dae" />
+        </geometry>
+    </visual>
+    <collision>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+            <box size="${stereo_length} ${stereo_width} ${stereo_height}" />
+        </geometry>
+    </collision>
+    <inertial>
+        <mass value="${stereo_mass}" />
+        <origin xyz="0 0 0" />
+        <cuboid_inertia m="${stereo_mass}" l="${stereo_length}" w="${stereo_width}" h="${stereo_height}" />
+    </inertial>
+  </link>
+
+  <joint name="stereo_joint" type="fixed">
+    <origin xyz="${base_length/2}
+                 0
+                 ${base_height/2 - stereo_offset_from_base_top}" rpy="0 0 0" />
+    <parent link="base_link" />
+    <child link="stereo_link" />
+  </joint>
+
+  <link name="stereo_left_optical_link" />
+
+  <joint name="stereo_left_optical_joint" type="fixed">
+    <origin xyz="${stereo_height/2} ${stereo_baseline/2} 0" rpy="${-pi/2} 0 ${-pi/2}" />
+    <parent link="stereo_link" />
+    <child link="stereo_left_optical_link" />
+  </joint>
+
+  <link name="stereo_right_optical_link" />
+
+  <joint name="stereo_right_optical_joint" type="fixed">
+    <origin xyz="${stereo_height/2} ${-stereo_baseline/2} 0" rpy="${-pi/2} 0 ${-pi/2}" />
+    <parent link="stereo_link" />
+    <child link="stereo_right_optical_link" />
+  </joint>
+
+</robot>

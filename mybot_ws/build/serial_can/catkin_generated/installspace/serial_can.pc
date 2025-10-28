@@ -1,0 +1,8 @@
+prefix=/home/anhle/mybot_ws/install
+
+Name: serial_can
+Description: Description of serial_can
+Version: 0.0.0
+Cflags: -I${prefix}/include
+Libs: -L${prefix}/lib 
+Requires: 

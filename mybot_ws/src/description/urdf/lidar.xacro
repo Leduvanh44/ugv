@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<robot name="lidar" 
+       xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+<!-- LIDAR -->
+  <link name="lidar_link">
+    <visual>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+            <mesh filename="package://description/model/UTM-30LX/mesh/UTM-30LX.dae" />
+        </geometry>
+    </visual>
+    <collision>
+        <origin xyz="0 0 ${-lidar_height/8}" rpy="0 0 0" />
+        <geometry>
+            <box size="${lidar_length} ${lidar_width} ${lidar_height}" />
+        </geometry>
+    </collision>
+    <inertial>
+        <mass value="${lidar_mass}" />
+        <origin xyz="0 0 0" />
+        <inertia ixx="2.632e-4" ixy="0" ixz="0"
+                 iyy="2.632e-4" iyz="0"
+                 izz="1.62e-4" />
+    </inertial>  
+  </link>
+
+  <joint name="lidar_joint" type="fixed">
+    <origin xyz="${base_length/2 - lidar_offset_from_base_front}
+                 0                   
+                 ${base_height/2 + lidar_height/2}" rpy="0 0 0" />
+    <parent link="base_link" />
+    <child link="lidar_link" />
+  </joint>
+
+  <link name="lidar_point_link" />
+
+  <joint name="lidar_point_joint" type="fixed">
+    <origin xyz="0 0 ${- lidar_height/2 + lidar_reception_plane}" rpy="0 0 0" />
+    <parent link="lidar_link" />
+    <child link="lidar_point_link" />
+  </joint>
+
+</robot>

@@ -1,0 +1,9 @@
+digraph G {
+"base_link" -> "lidar_point_link"[label="Broadcaster: /base_link_to_lidar_broadcaster\nAverage rate: 10000.000 Hz\nMost recent transform: 0.000 ( 1718898716.297 sec old)\nBuffer length: 0.000 sec\n"];
+"odom" -> "base_link"[label="Broadcaster: /odom_to_base_link_broadcaster\nAverage rate: 10.194 Hz\nMost recent transform: 1718898716.385 ( -0.088 sec old)\nBuffer length: 4.905 sec\n"];
+"map" -> "odom"[label="Broadcaster: /amcl\nAverage rate: 10000.000 Hz\nMost recent transform: 0.000 ( 1718898716.297 sec old)\nBuffer length: 0.000 sec\n"];
+edge [style=invis];
+ subgraph cluster_legend { style=bold; color=black; label ="view_frames Result";
+"Recorded at time: 1718898716.297"[ shape=plaintext ] ;
+ }->"map";
+}

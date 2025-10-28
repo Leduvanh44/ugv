@@ -1,0 +1,8 @@
+prefix=/home/anhle/mybot_ws/devel
+
+Name: cmd_vel_converter
+Description: Description of cmd_vel_converter
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 

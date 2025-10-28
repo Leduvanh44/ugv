@@ -1,0 +1,419 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- This URDF was automatically created by SolidWorks to URDF Exporter! Originally created by Stephen Brawner (brawner@gmail.com) 
+     Commit Version: 1.6.0-1-g15f4949  Build Version: 1.6.7594.29634
+     For more information, please see http://wiki.ros.org/sw_urdf_exporter -->
+<robot
+  name="deli_robo">
+  <link
+    name="base_link">
+    <inertial>
+      <origin
+        xyz="-0.037666 0.19446 0.026"
+        rpy="0 0 0" />
+      <mass
+        value="3" />
+      <inertia
+        ixx="0"
+        ixy="0"
+        ixz="0"
+        iyy="0"
+        iyz="0"
+        izz="0" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <box size=".1 .2 .08"/>
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.75294 0.75294 0.75294 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <box size=".1 .2 .08"/>   
+      </geometry>
+    </collision>
+  </link>
+  <link
+    name="wheel_back_left_link">
+    <inertial>
+      <origin
+        xyz="2.6757E-09 2.4819E-09 -0.010577"
+        rpy="0 0 0" />
+      <mass
+        value="0.6" />
+      <inertia
+        ixx="0.0033232"
+        ixy="-1.1337E-08"
+        ixz="8.1177E-11"
+        iyy="0.0033232"
+        iyz="-6.1399E-11"
+        izz="0.0061353" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://deli_robo/meshes/wheels.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.75294 0.75294 0.75294 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://deli_robo/meshes/wheels.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="joint_wheel_back_left"
+    type="continuous">
+    <origin
+      xyz="-0.23154 0.2955 0.06"
+      rpy="1.5708 0 3.1416" />
+    <parent
+      link="base_link" />
+    <child
+      link="wheel_back_left_link" />
+    <axis
+      xyz="0 0 -1" />
+  </joint>
+  <link
+    name="wheel_back_right_link">
+    <inertial>
+      <origin
+        xyz="3.5038E-09 1.021E-09 0.010577"
+        rpy="0 0 0" />
+      <mass
+        value="0.6" />
+      <inertia
+        ixx="0.0033232"
+        ixy="-9.3654E-09"
+        ixz="1.0986E-11"
+        iyy="0.0033232"
+        iyz="-1.0119E-10"
+        izz="0.0061353" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://deli_robo/meshes/wheels.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.75294 0.75294 0.75294 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://deli_robo/meshes/wheels.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="joint_wheel_back_right"
+    type="continuous">
+    <origin
+      xyz="-0.23154 -0.2955 0.06"
+      rpy="1.5708 0 3.1416" />
+    <parent
+      link="base_link" />
+    <child
+      link="wheel_back_right_link" />
+    <axis
+      xyz="0 0 1" />
+  </joint>
+  <link
+    name="wheel_front_left_link">
+    <inertial>
+      <origin
+        xyz="2.2922E-08 -3.5373E-10 0.00086907"
+        rpy="0 0 0" />
+      <mass
+        value="0.6" />
+      <inertia
+        ixx="0.00054477"
+        ixy="1.164E-11"
+        ixz="5.0249E-11"
+        iyy="0.00054477"
+        iyz="2.8527E-12"
+        izz="0.0010243" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://deli_robo/meshes/wheels.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.75294 0.75294 0.75294 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://deli_robo/meshes/wheels.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="joint_wheel_front_left"
+    type="continuous">
+    <origin
+      xyz="0.23 0.24887 0.033"
+      rpy="1.5708 0 3.1416" />
+    <parent
+      link="base_link" />
+    <child
+      link="wheel_front_left_link" />
+    <axis
+      xyz="0 0 -1" />
+  </joint>
+  <link
+    name="wheel_front_right_link">
+    <inertial>
+      <origin
+        xyz="2.2203E-08 -5.7057E-09 0.00086907"
+        rpy="0 0 0" />
+      <mass
+        value="0.6" />
+      <inertia
+        ixx="0.00054477"
+        ixy="2.5356E-11"
+        ixz="4.9522E-11"
+        iyy="0.00054477"
+        iyz="-8.9807E-12"
+        izz="0.0010243" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://deli_robo/meshes/wheels.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.75294 0.75294 0.75294 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://deli_robo/meshes/wheels.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="joint_wheel_front_right"
+    type="continuous">
+    <origin
+      xyz="0.23 -0.2595 0.033"
+      rpy="1.5708 0 3.1416" />
+    <parent
+      link="base_link" />
+    <child
+      link="wheel_front_right_link" />
+    <axis
+      xyz="0 0 1" />
+  </joint>
+
+  <link
+    name="gps_ins_point_link">
+    <inertial>
+      <origin
+        xyz="-0.002036 -0.001601 0.004"
+        rpy="0 0 0" />
+      <mass
+        value="0.0056708" />
+      <inertia
+        ixx="2.7399E-07"
+        ixy="8.0779E-24"
+        ixz="-1.5978E-22"
+        iyy="4.8412E-07"
+        iyz="-8.3674E-24"
+        izz="6.9802E-07" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://deli_robo/meshes/gps_ins_point_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 0.50196 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://deli_robo/meshes/gps_ins_point_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="joint_imu"
+    type="fixed">
+    <origin
+      xyz="0 0 0.0574"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="gps_ins_point_link" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+
+
+  <link
+    name="lidar_point_link">
+    <inertial>
+      <origin
+        xyz="-0.00064383 9.2927E-10 0.037832"
+        rpy="0 0 0" />
+      <mass
+        value="0.22916" />
+      <inertia
+        ixx="0.00020894"
+        ixy="1.295E-12"
+        ixz="-1.1307E-06"
+        iyy="0.00021335"
+        iyz="-4.2308E-12"
+        izz="0.00011244" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://deli_robo/meshes/lidar_point_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0 0 0 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://deli_robo/meshes/lidar_point_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="joint_lidar"
+    type="fixed">
+    <origin
+      xyz="0.245 -0.0051 0.23"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="lidar_point_link" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+  <link
+    name="lid_container_link">
+    <inertial>
+      <origin
+        xyz="0.29751 -0.040394 -1.3876E-07"
+        rpy="0 0 0" />
+      <mass
+        value="1" />
+      <inertia
+        ixx="0.099856"
+        ixy="0.022481"
+        ixz="4.1838E-08"
+        iyy="0.15535"
+        iyz="2.9181E-08"
+        izz="0.094701" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://deli_robo/meshes/lid_container_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://deli_robo/meshes/lid_container_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="joint_lid"
+    type="fixed">
+    <origin
+      xyz="0.16793 0 0.25293"
+      rpy="1.5708 0 3.1416" />
+    <parent
+      link="base_link" />
+    <child
+      link="lid_container_link" />
+    <axis
+      xyz="0 0 1" />
+  </joint>
+</robot>

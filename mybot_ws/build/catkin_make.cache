@@ -1,0 +1,2 @@
+can_interface:cmd_vel_converter:cre_map:deli_robo:description:guider:lidar_localization:mqtt_start:mybot:mybot_gazebo:navi:outdoor_obstacle:pcl_lidar:radius_create:serial:serial_gps:switch_mode:test_send_indoor:urg_node:utils
+-DCATKIN_DEVEL_PREFIX=/home/anhle/mybot_ws/devel -DCMAKE_INSTALL_PREFIX=/home/anhle/mybot_ws/install -G Unix Makefiles

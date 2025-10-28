@@ -1,0 +1,8 @@
+prefix=/home/anhle/mybot_ws/devel
+
+Name: outdoor_obstacle
+Description: Description of outdoor_obstacle
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 

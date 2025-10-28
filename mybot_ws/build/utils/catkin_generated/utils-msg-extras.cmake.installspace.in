@@ -1,0 +1,2 @@
+set(utils_MESSAGE_FILES "msg/Odometry.msg;msg/Odometry_gps.msg;msg/Setpoint.msg;msg/obtacles.msg;msg/Error.msg;msg/DiffVel.msg;msg/Encoder.msg;msg/KeyboardCommand.msg;msg/Waypoint.msg;msg/WaypointList.msg;msg/ParamValue.msg;msg/distance_msgs.msg;msg/mode_indoor.msg;msg/Complete.msg;msg/string_of_qrcode.msg;msg/Position_avoid_obstacles.msg;msg/pointID.msg;msg/goal_indoor.msg;msg/heading_plot.msg")
+set(utils_SERVICE_FILES "srv/CommandInt.srv;srv/CommandLong.srv;srv/ParamGet.srv;srv/ParamSet.srv;srv/SetMode.srv")
