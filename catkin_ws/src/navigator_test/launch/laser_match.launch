@@ -1,0 +1,28 @@
+<launch>
+
+
+  <node pkg="laser_scan_matcher" type="laser_scan_matcher_node" name="laser_scan_matcher" output="screen">
+    <param name="min_inlier_ratio" type="double" value="0.3" />
+    <param name="max_iterations" type="int" value="50" />
+    <param name="max_correspondence_dist" type="double" value="0.5" />
+    <param name="max_angle_diff" type="double" value="0.2" />
+    <param name="scan_topic" type="string" value="/scan" />
+    <param name="use_imu" type="bool" value="false" /> 
+  </node>
+
+  <node name="urg_node" pkg="urg_node" type="urg_node" output="screen">
+    <param name="ip_address" value=""/>
+    <param name="" value=""/>
+    
+    <param name="serial_port" value="/dev/ttyACM0"/>
+    <param name="serial_baud" value="115200"/>
+    <param name="frame_id" value="base_link"/>
+    <param name="calibrate_time" value="false"/>
+    <param name="publish_intensity" value="true"/>
+    <param name="publish_multiecho" value="false"/>
+    <param name="enable_urg-node" value="true"/>
+  </node>
+
+  <node name = "odometry_lidar_node" pkg = "mybot" type="odom_lidar.py" output="screen">
+  </node>
+</launch>

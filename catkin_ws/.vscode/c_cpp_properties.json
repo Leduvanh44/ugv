@@ -1,0 +1,36 @@
+{
+  "configurations": [
+    {
+      "browse": {
+        "databaseFilename": "${default}",
+        "limitSymbolsToIncludedHeaders": false
+      },
+      "includePath": [
+        "/home/leduvanh/mybot_ws/devel/include/**",
+        "/opt/ros/melodic/include/**",
+        "/home/leduvanh/mybot_ws/src/can_interface/include/**",
+        "/home/leduvanh/mybot_ws/src/cmd_vel_converter/include/**",
+        "/home/leduvanh/mybot_ws/src/cre_map/include/**",
+        "/home/leduvanh/mybot_ws/src/deli_robo/include/**",
+        "/home/leduvanh/mybot_ws/src/guider/include/**",
+        "/home/leduvanh/mybot_ws/src/mqtt_start/include/**",
+        "/home/leduvanh/mybot_ws/src/mybot/include/**",
+        "/home/leduvanh/mybot_ws/src/mybot_gazebo/include/**",
+        "/home/leduvanh/mybot_ws/src/navi/include/**",
+        "/home/leduvanh/mybot_ws/src/outdoor_obstacle/include/**",
+        "/home/leduvanh/mybot_ws/src/serial/include/**",
+        "/home/leduvanh/mybot_ws/src/serial_can/include/**",
+        "/home/leduvanh/mybot_ws/src/serial_gps/include/**",
+        "/home/leduvanh/mybot_ws/src/urg_node/include/**",
+        "/home/leduvanh/mybot_ws/src/utils/include/**",
+        "/usr/include/**"
+      ],
+      "name": "ROS",
+      "intelliSenseMode": "gcc-x64",
+      "compilerPath": "/usr/bin/gcc",
+      "cStandard": "gnu11",
+      "cppStandard": "c++14"
+    }
+  ],
+  "version": 4
+}

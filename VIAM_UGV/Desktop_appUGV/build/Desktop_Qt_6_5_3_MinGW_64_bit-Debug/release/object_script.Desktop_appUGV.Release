@@ -1,0 +1,14 @@
+release/Dashboard.o
+release/Logfile.o
+release/MQTT.o
+release/ManageRobot.o
+release/Order.o
+release/Plotting.o
+release/SigninSignup.o
+release/mainwindow.o
+release/plotdata.o
+release/qcustomplot.o
+release/qrc_icon.o
+release/moc_mainwindow.o
+release/moc_plotdata.o
+release/moc_qcustomplot.o

@@ -1,0 +1,12 @@
+<launch>
+
+<node name="rp_publisher" pkg="dk_adap_test" type="ref_.py" output="screen"/>
+
+<node name="reference_points_publisher" pkg="dk_adap_test" type="input_fake.py" output="screen"/>
+
+<node name="fake_odom" pkg="dk_adap_test" type="odom_fake.py" output="screen"/>
+
+<node name="controller_node" pkg="dk_adap_test" type="controller_node" output="screen"/>
+
+<node pkg="rviz" type="rviz" name="rviz" args="-d $(find dk_adap_test)/rviz/s.rviz"/>
+</launch>

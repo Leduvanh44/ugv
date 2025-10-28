@@ -1,0 +1,8 @@
+prefix=/home/anhle/catkin_ws/install
+
+Name: dk_adap_test
+Description: Description of dk_adap_test
+Version: 0.0.0
+Cflags: -I${prefix}/include
+Libs: -L${prefix}/lib -ldk_adap_test
+Requires: geometry_msgs nav_msgs roscpp rospy sensor_msgs std_msgs message_runtime

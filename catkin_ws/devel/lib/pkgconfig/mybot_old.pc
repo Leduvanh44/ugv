@@ -1,0 +1,8 @@
+prefix=/home/anhle/catkin_ws/devel
+
+Name: mybot_old
+Description: Description of mybot_old
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 

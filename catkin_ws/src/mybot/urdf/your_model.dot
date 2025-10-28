@@ -1,0 +1,13 @@
+digraph G {
+base_link -> left_wheel  [label=left_wheel_hinge];
+base_link -> right_wheel  [label=right_wheel_hinge];
+base_link -> wheel_front_left_link  [label=joint_wheel_front_left];
+base_link -> wheel_front_right_link  [label=joint_wheel_front_right];
+base_link -> hokuyo_link  [label=hokuyo_joint];
+base_link -> imu_sensor  [label=sensor_joint];
+base_link -> gps_link  [label=sensor_gps_joint];
+base_link -> container_link  [label=link_container];
+container_link -> lid_container_link  [label=joint_lid];
+base_link -> depth  [label=joint_depth_chassis];
+base_link -> depth_link  [label=joint_depth_link];
+}

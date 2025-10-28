@@ -1,0 +1,63 @@
+<launch>
+  <arg name="enable_urg_node" default="false" />
+  <arg name="enable_gps" default="true" />
+  <arg name="enable_imu" default="false"/>
+  <arg name="enable_guider" default="true"/>
+  <arg name="enable_controller" default="true"/>
+
+<group if="$(arg enable_urg_node)">
+  <node name="urg_node" pkg="urg_node" type="urg_node" output="screen">
+    <param name="ip_address" value=""/>
+    <param name="serial_port" value="/dev/ttyACM0"/>
+    <param name="serial_baud" value="115200"/>
+    <param name="frame_id" value="laser"/>
+    <param name="calibrate_time" value="true"/>
+    <param name="publish_intensity" value="false"/>
+    <param name="publish_multiecho" value="false"/>
+    <param name="angle_min" value="-1.5707963"/>
+    <param name="angle_max" value="1.5707963"/>
+    <param name="enable_urg-node" value="true"> 
+    <remap from="scan" to="horizontal_laser_2d"/>
+  </node>
+</group>
+
+<group if="$(arg enable_gps)">
+<node name = "gps_node1" pkg = "serial_gps" type="serial_gps" output="screen">
+  <param name="enable_gps" value="true"> 
+  <param name="gps_port" value="/dev/ttyUSB0"/>
+  <param name="gps_baud" value="115200"/>
+</node>
+</group>
+
+<group if="$(arg enable_imu)">
+<node name = "imu_node" pkg = "mpu_6050_driver" type="imu_node" output="screen">
+  <!-- <param name="enable_imu" value="true"> -->
+</node>
+</group>
+
+<group if="$(arg enable_guider)">
+  <node pkg="guider" type="guider" name="guider_node" output="screen" >
+    <param name="guiding_period" value="0.1" />
+    <param name="set_speed" value="0.65" />
+    <param name="set_heading" value="1.33866753628" />
+    <param name="LOS_radius" value="3.0" />
+    <param name="LOS_min_delta" value="1.0" />
+    <param name="LOS_max_delta" value="2.9" />
+    <param name="LOS_beta" value="0.0" />
+  </node>
+</group>
+
+
+<group if="$(arg enable_controller)">
+  <node pkg="controller" type="controller" name="controller"  >
+    <param name="controlling_period" value="0.02" />
+    <param name="diff_rpm" value="45.0" />
+    <param name="heading_Kp" value="45.0" />
+    <param name="heading_Ki" value="0.0" />
+    <param name="heading_Kd" value="15.0" />
+  </node>
+</group>
+
+
+
+</launch>

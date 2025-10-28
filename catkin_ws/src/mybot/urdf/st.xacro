@@ -1,0 +1,548 @@
+<?xml version='1.0'?>
+
+<robot name="st" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <xacro:include filename="$(find mybot)/urdf/st.gazebo"/>
+  <link
+    name="base_link">
+    <inertial>
+      <origin
+        xyz="-0.037666 0.19446 0.026"
+        rpy="0 0 0" />
+      <mass
+        value="3" />
+      <inertia
+        ixx="0"
+        ixy="0"
+        ixz="0"
+        iyy="0"
+        iyz="0"
+        izz="0" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+          <mesh
+            filename="package://mybot/meshes/container_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.75294 0.75294 0.75294 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+          <mesh
+            filename="package://mybot/meshes/container_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+
+  <!--  Wheels -->
+  <link name="left_wheel">
+    <!--origin xyz="0.1 0.13 0.1" rpy="0 1.5707 1.5707"/-->
+    <collision name="collision">
+      <origin xyz="0 0 0" rpy="0 1.5707 1.5707"/>
+      <geometry>
+        <cylinder radius="0.1" length="0.05"/>
+      </geometry>
+    </collision>
+    <visual name="left_wheel_visual">
+      <origin xyz="0 0 0" rpy="0 1.5707 1.5707"/>
+      <geometry>
+        <cylinder radius="0.1" length="0.05"/>
+      </geometry>
+    <material name="black">
+        <color rgba="0.0 0.0 0.0 1.0"/>
+    </material>
+    </visual>
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 1.5707 1.5707"/>
+      <mass value="5"/>
+      <inertia
+        ixx=".1" ixy="0.0" ixz="0.0"
+        iyy=".1" iyz="0.0"
+        izz=".1"/>
+    </inertial>
+  </link>
+  <joint type="continuous" name="left_wheel_hinge">
+    <origin xyz="-0.23 0.24887 0.033" rpy="0 0 0"/>
+    <child link="left_wheel"/>
+    <parent link="base_link"/>
+    <axis xyz="0 1 0" rpy="0 0 0"/>
+    <!-- <limit effort="10000" velocity="1000"/> -->
+    <joint_properties damping="0.0" friction="0.0"/>
+  </joint>
+
+  <link name="right_wheel">
+    <!--origin xyz="0.1 -0.13 0.1" rpy="0 1.5707 1.5707"/-->
+    <collision name="collision">
+      <origin xyz="0 0 0" rpy="0 1.5707 1.5707"/>
+      <geometry>
+        <cylinder radius="0.1" length="0.05"/>
+      </geometry>
+    </collision>
+    <visual name="right_wheel_visual">
+      <origin xyz="0 0 0" rpy="0 1.5707 1.5707"/>
+      <geometry>
+        <cylinder radius="0.1" length="0.05"/>
+      </geometry>
+        <material name="black">
+            <color rgba="0.0 0.0 0.0 1.0"/>
+        </material>
+    </visual>
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 1.5707 1.5707"/>
+      <mass value="5"/>
+      <inertia
+        ixx=".1" ixy="0.0" ixz="0.0"
+        iyy=".1" iyz="0.0"
+        izz=".1"/>
+    </inertial>
+  </link>
+  <joint type="continuous" name="right_wheel_hinge">
+    <origin xyz="-0.23 -0.24887 0.033" rpy="0 0 0"/>
+    <child link="right_wheel"/>
+    <parent link="base_link"/>
+    <axis xyz="0 1 0" rpy="0 0 0"/>
+    <!-- <limit effort="10000" velocity="1000"/> -->
+    <joint_properties damping="0.0" friction="0.0"/>
+  </joint>
+
+<link name="wheel_front_left_link">
+    <inertial>
+      <origin
+        xyz="2.2922E-08 -3.5373E-10 0.00086907"
+        rpy="0 0 0" />
+      <mass
+        value="0.6" />
+      <inertia
+        ixx="0.00054477"
+        ixy="1.164E-11"
+        ixz="5.0249E-11"
+        iyy="0.00054477"
+        iyz="2.8527E-12"
+        izz="0.0010243" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <cylinder radius="0.1" length="0.05"/>
+      </geometry>
+        <material name="black">
+            <color rgba="0.0 0.0 0.0 1.0"/>
+        </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <cylinder radius="0.1" length="0.05"/>
+      </geometry>
+    </collision>
+</link>
+<joint name="joint_wheel_front_left"
+    type="continuous">
+    <origin
+      xyz="0.23 0.25887 0.033"
+      rpy="1.5708 0 3.1416" />
+    <parent
+      link="base_link" />
+    <child
+      link="wheel_front_left_link" />
+    <axis xyz="0 1 0" rpy="0 0 0"/>
+</joint>
+
+<link name="wheel_front_right_link">
+    <inertial>
+      <origin
+        xyz="2.2203E-08 -5.7057E-09 0.00086907"
+        rpy="0 0 0" />
+      <mass
+        value="0.6" />
+      <inertia
+        ixx="0.00054477"
+        ixy="2.5356E-11"
+        ixz="4.9522E-11"
+        iyy="0.00054477"
+        iyz="-8.9807E-12"
+        izz="0.0010243" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <cylinder radius="0.1" length="0.05"/>
+      </geometry>
+        <material name="black">
+            <color rgba="0.0 0.0 0.0 1.0"/>
+        </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <cylinder radius="0.1" length="0.05"/>
+      </geometry>
+    </collision>
+</link>
+<joint name="joint_wheel_front_right"
+    type="continuous">
+    <origin
+      xyz="0.23 -0.25887 0.033"
+      rpy="1.5708 0 3.1416" />
+    <parent
+      link="base_link" />
+    <child
+      link="wheel_front_right_link" />
+    <axis xyz="0 1 0" rpy="0 0 0"/>
+</joint>
+
+  <!-- Hokuyo Laser -->
+<link name="hokuyo_link">
+    <inertial>
+      <origin
+        xyz="-0.00064383 9.2927E-10 0.037832"
+        rpy="0 0 0" />
+      <mass
+        value="0.22916" />
+      <inertia
+        ixx="0.00020894"
+        ixy="1.295E-12"
+        ixz="-1.1307E-06"
+        iyy="0.00021335"
+        iyz="-4.2308E-12"
+        izz="0.00011244" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://mybot/meshes/lidar_point_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0 0 0 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://mybot/meshes/lidar_point_link.STL" />
+      </geometry>
+    </collision>
+</link>
+
+<joint name="hokuyo_joint" type="fixed">
+    <axis xyz="0 1 0" />
+    <origin
+      xyz="0.13 -0.0051 0.23"
+      rpy="0 0 0" />
+    <parent link="base_link"/>
+    <child link="hokuyo_link"/>
+</joint> 
+
+ <!-- imu Link -->
+<link name="imu_sensor">
+    <visual>
+      <origin xyz="0.04 0 0.05" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.07 0.07 0.03"/>
+      </geometry>
+      <material name="orange"/>
+    </visual>
+
+    <inertial>
+      <origin xyz="0 0 1" rpy="0 0 0"/>
+      <mass value="1"/>
+      <inertia
+        ixx="1.0" ixy="0.0" ixz="0.0"
+        iyy="1.0" iyz="0.0"
+        izz="1.0"/>
+    </inertial>
+</link>
+<joint name="sensor_joint" type="fixed">
+      <origin
+      xyz="0.1 0 0.0574"
+      rpy="0 0 0" />
+    <parent link="base_link"/>
+    <child link="imu_sensor"/>
+</joint>
+
+<!-- gps Link -->
+<link name="gps_link">
+    <inertial>
+      <origin
+        xyz="-0.002036 -0.001601 0.004"
+        rpy="0 0 0" />
+      <mass
+        value="0.0056708" />
+      <inertia
+        ixx="2.7399E-07"
+        ixy="8.0779E-24"
+        ixz="-1.5978E-22"
+        iyy="4.8412E-07"
+        iyz="-8.3674E-24"
+        izz="6.9802E-07" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://mybot/meshes/gps_ins_point_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 0.50196 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://mybot/meshes/gps_ins_point_link.STL" />
+      </geometry>
+    </collision>
+</link>
+<joint
+  name="sensor_gps_joint"
+  type="fixed">
+  <origin
+    xyz="0 0 0.0574"
+    rpy="0 0 0" />
+  <parent
+    link="base_link" />
+  <child
+    link="gps_link" />
+  <axis
+    xyz="0 0 0" />
+</joint>
+
+<link name="container_link">
+    <inertial>
+      <origin
+        xyz="0.010614 -0.0022011 0.091896"
+        rpy="0 0 0" />
+      <mass
+        value="10" />
+      <inertia
+        ixx="0.18416"
+        ixy="8.2071E-06"
+        ixz="0.0032964"
+        iyy="0.22207"
+        iyz="2.5203E-06"
+        izz="0.35275" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://mybot/meshes/container_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.75294 0.75294 0.75294 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://mybot/meshes/container_link.STL" />
+      </geometry>
+    </collision>
+</link>
+<joint name="link_container"
+    type="fixed">
+    <origin
+      xyz="-0.07654 -0.0001 0.2"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="container_link" />
+    <axis
+      xyz="0 0 0" />
+</joint>
+
+<link name="lid_container_link">
+    <inertial>
+      <origin
+        xyz="0.29751 -0.040394 -1.3876E-07"
+        rpy="0 0 0" />
+      <mass
+        value="1" />
+      <inertia
+        ixx="0.099856"
+        ixy="0.022481"
+        ixz="4.1838E-08"
+        iyy="0.15535"
+        iyz="2.9181E-08"
+        izz="0.094701" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://mybot/meshes/lid_container_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.1 0.25 1 0.8" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://mybot/meshes/lid_container_link.STL" />
+      </geometry>
+    </collision>
+</link>
+<joint name="joint_lid"
+    type="fixed">
+    <origin
+      xyz="0.16793 0 0.25293"
+      rpy="1.5708 0 3.1416" />
+    <parent
+      link="container_link" />
+    <child
+      link="lid_container_link" />
+    <axis
+      xyz="0 0 1" />
+</joint>
+
+<!-- sonar Link -->
+<!-- <link
+    name="sonar_link">
+    <inertial>
+      <origin
+        xyz="-0.0051004 -6.5642E-16 0.020902"
+        rpy="0 0 0" />
+      <mass
+        value="0.17044" />
+      <inertia
+        ixx="0.0019045"
+        ixy="-4.3877E-18"
+        ixz="2.391E-05"
+        iyy="0.00012619"
+        iyz="2.9518E-19"
+        izz="0.0018177" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://mybot/meshes/sonar_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.5294 0.5294 0.5294 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://mybot/meshes/sonar_link.STL" />
+      </geometry>
+    </collision>
+</link>
+<joint
+    name="joint_sonar"
+    type="fixed">
+    <origin
+      xyz="0.218 0 0.2"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="sonar_link" />
+    <axis
+      xyz="0 0 0" />
+</joint> -->
+
+<!-- camera xyz="-0.00033186 3.8806E-17 0.023695"-->
+	<link name="depth">
+		<visual>
+			<origin rpy="0 0 0" xyz="0 0 0"/>
+			<geometry>
+        <mesh
+          filename="package://mybot/meshes/stereo_link.STL" />			
+      </geometry>
+		</visual>
+	
+		<collision name="collision_depth">
+			<geometry>
+        <mesh
+          filename="package://mybot/meshes/stereo_link.STL" />		
+        </geometry>
+		</collision>
+
+		<inertial>
+			<mass value="0.2"/>
+			<origin rpy="0 0 0" xyz="-0.00064383 9.2927E-10 0.037832"/>
+			<inertia ixx="0.1" ixy="0" ixz="0" iyy=".1" iyz="0" izz=".1"/>
+		</inertial>
+	</link>
+	
+	<joint name="joint_depth_chassis" type="fixed">
+		<origin rpy="0 0 0" xyz="0.245 -0.0051 0.3"/>
+		<child link="depth"/>
+		<parent link="base_link"/>
+		
+	</joint>
+	
+	<link name="depth_link" />
+	
+	<joint name="joint_depth_link" type="fixed">
+		<origin rpy="-1.5707 0 -1.5707" xyz="0.145 -0.0051 0.3"/>
+		<child link="depth_link"/>
+		<parent link="base_link"/>
+	</joint>
+
+
+
+<material name="orange">
+  <color rgba="${255/255} ${108/255} ${10/255} 1.0"/>
+</material>
+
+</robot>
+

@@ -1,0 +1,14 @@
+debug/Dashboard.o
+debug/Logfile.o
+debug/MQTT.o
+debug/ManageRobot.o
+debug/Order.o
+debug/Plotting.o
+debug/SigninSignup.o
+debug/mainwindow.o
+debug/plotdata.o
+debug/qcustomplot.o
+debug/qrc_icon.o
+debug/moc_mainwindow.o
+debug/moc_plotdata.o
+debug/moc_qcustomplot.o

@@ -1,0 +1,59 @@
+<?xml version="1.0"?>
+<robot name="IMU" 
+       xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+     <link
+       name="gps_ins_point_link">
+       <inertial>
+         <origin
+           xyz="-0.002036 -0.001601 0.004"
+           rpy="0 0 0" />
+         <mass
+           value="0.0056708" />
+         <inertia
+           ixx="2.7399E-07"
+           ixy="8.0779E-24"
+           ixz="-1.5978E-22"
+           iyy="4.8412E-07"
+           iyz="-8.3674E-24"
+           izz="6.9802E-07" />
+       </inertial>
+       <visual>
+         <origin
+           xyz="0 0 0"
+           rpy="0 0 0" />
+         <geometry>
+           <mesh
+             filename="package://deli_robo/meshes/gps_ins_point_link.STL" />
+         </geometry>
+         <material
+           name="">
+           <color
+             rgba="1 0.50196 1 1" />
+         </material>
+       </visual>
+       <collision>
+         <origin
+           xyz="0 0 0"
+           rpy="0 0 0" />
+         <geometry>
+           <mesh
+             filename="package://deli_robo/meshes/gps_ins_point_link.STL" />
+         </geometry>
+       </collision>
+     </link>
+     <joint
+       name="joint_imu"
+       type="fixed">
+       <origin
+         xyz="0 0 0.065"
+         rpy="${pi} 0 0" />
+       <parent
+         link="sonar_link" />
+       <child
+         link="gps_ins_point_link" />
+       <axis
+         xyz="0 0 0" />
+     </joint>
+
+</robot>

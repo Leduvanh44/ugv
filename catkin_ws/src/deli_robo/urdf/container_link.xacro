@@ -1,0 +1,113 @@
+<?xml version="1.0"?>
+<robot name="container" 
+       xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+       <link
+       name="container_link">
+       <inertial>
+         <origin
+           xyz="0.010614 -0.0022011 0.091896"
+           rpy="0 0 0" />
+         <mass
+           value="20.0" />
+         <inertia
+           ixx="0.18416"
+           ixy="8.2071E-06"
+           ixz="0.0032964"
+           iyy="0.22207"
+           iyz="2.5203E-06"
+           izz="0.35275" />
+       </inertial>
+       <visual>
+         <origin
+           xyz="0 0 0"
+           rpy="0 0 0" />
+         <geometry>
+           <mesh
+             filename="package://deli_robo/meshes/container_link.STL" />
+         </geometry>
+         <material
+           name="">
+           <color
+             rgba="0.75294 0.75294 0.75294 1" />
+         </material>
+       </visual>
+       <collision>
+         <origin
+           xyz="0 0 0"
+           rpy="0 0 0" />
+         <geometry>
+           <mesh
+             filename="package://deli_robo/meshes/container_link.STL" />
+         </geometry>
+       </collision>
+     </link>
+     <joint
+       name="link_container"
+       type="fixed">
+       <origin
+         xyz="-0.07654 -0.0001 0.2"
+         rpy="0 0 0" />
+       <parent
+         link="base_link" />
+       <child
+         link="container_link" />
+       <axis
+         xyz="0 0 0" />
+     </joint>
+     <link
+     name="lid_container_link">
+     <inertial>
+       <origin
+         xyz="0.29751 -0.040394 -1.3876E-07"
+         rpy="0 0 0" />
+       <mass
+         value="1" />
+       <inertia
+         ixx="0.099856"
+         ixy="0.022481"
+         ixz="4.1838E-08"
+         iyy="0.15535"
+         iyz="2.9181E-08"
+         izz="0.094701" />
+     </inertial>
+     <visual>
+       <origin
+         xyz="0 0 0"
+         rpy="0 0 0" />
+       <geometry>
+         <mesh
+           filename="package://deli_robo/meshes/lid_container_link.STL" />
+       </geometry>
+       <material
+         name="">
+         <color
+           rgba="0 1 1 1" />
+       </material>
+     </visual>
+     <collision>
+       <origin
+         xyz="0 0 0"
+         rpy="0 0 0" />
+       <geometry>
+         <mesh
+           filename="package://deli_robo/meshes/lid_container_link.STL" />
+       </geometry>
+     </collision>
+   </link>
+   <joint
+     name="joint_lid"
+     type="fixed">
+     <origin
+       xyz="0.16793 0 0.25293"
+       rpy="1.5708 0 3.1416" />
+     <parent
+       link="container_link" />
+     <child
+       link="lid_container_link" />
+     <axis
+       xyz="0 0 1" />
+   </joint>
+
+
+</robot>

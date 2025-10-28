@@ -1,0 +1,26 @@
+<robot name="head_2d">
+
+  <material name="orange">
+    <color rgba="1.0 0.5 0.2 1" />
+  </material>
+  <material name="gray">
+    <color rgba="0.2 0.2 0.2 1" />
+  </material>
+
+ <link name="odom"/>
+<link name="base_link"/>
+<joint name="odom_to_base_link" type="fixed">
+    <parent link="odom"/>
+    <child link="base_link"/>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+</joint>
+
+<link name="camera_link"/>
+<joint name="base_to_camera" type="fixed">
+    <parent link="base_link"/>
+    <child link="camera_link"/>
+    <origin xyz="0 0 1.0" rpy="0 0 0"/> 
+</joint>
+
+</robot>
+

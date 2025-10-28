@@ -1,0 +1,142 @@
+<?xml version="1.0"?>
+<launch>
+
+  <node name="urg_node" pkg="urg_node" type="urg_node" output="screen">
+    <param name="ip_address" value=""/>
+    <param name="serial_port" value="/dev/ttyACM0"/>
+    <param name="serial_baud" value="115200"/>
+    <param name="frame_id" value="base_link"/>
+    <param name="calibrate_time" value="false"/>
+    <param name="publish_intensity" value="true"/>
+    <param name="publish_multiecho" value="false"/>
+    <remap from="scan" to="horizontal_laser_2d"/>
+  </node>
+   
+  <arg name="camera" default="base" />
+  <arg name="rgb_frame_id"   default="$(arg camera)_rgb_optical_frame" />
+  <arg name="depth_frame_id" default="$(arg camera)_depth_optical_frame" />
+  <arg name="data_skip" default="0" />
+  <arg name="device_id" default="#1" />
+  <arg name="rgb_camera_info_url"   default="" />
+  <arg name="depth_camera_info_url" default="" />
+  <arg name="depth_registration" default="false" />
+  <arg name="rgb"              default="rgb" />
+  <arg name="ir"               default="ir" />
+  <arg name="depth"            default="depth" />
+  <arg name="depth_registered" default="depth_registered" />
+  <arg name="projector"        default="projector" />
+
+  <!-- Optionally suppress loading the driver nodelet and/or publishing the default tf
+       tree. Useful if you are playing back recorded raw data from a bag, or are
+       supplying a more accurate tf tree from calibration. -->
+  <arg name="load_driver" default="true" />
+  <arg name="publish_tf" default="true" />
+  <!-- Processing Modules -->
+  <arg name="rgb_processing"                  default="true"/>
+  <arg name="ir_processing"                   default="true"/>
+  <arg name="depth_processing"                default="true"/>
+  <arg name="depth_registered_processing"     default="true"/>
+  <arg name="disparity_processing"            default="true"/>
+  <arg name="disparity_registered_processing" default="true"/>
+  <arg name="hw_registered_processing"        default="true" />
+  <arg name="sw_registered_processing"        default="true" />
+
+  <!-- Disable bond topics by default -->
+  <arg name="bond" default="false" /> <!-- DEPRECATED, use respawn arg instead -->
+  <arg name="respawn" default="$(arg bond)" />
+
+  <!-- Worker threads for the nodelet manager -->
+  <arg name="num_worker_threads" default="4" />
+
+  <!-- enable libfreenect debug logging -->
+  <arg name="libfreenect_debug" default="false" />
+
+  <!-- enable diagnostics support for freenect_camera -->
+  <arg name="enable_rgb_diagnostics" default="false" />
+  <arg name="enable_ir_diagnostics" default="false" />
+  <arg name="enable_depth_diagnostics" default="false" />
+  <arg name="diagnostics_max_frequency" default="30.0" />
+  <arg name="diagnostics_min_frequency" default="30.0" />
+  <arg name="diagnostics_tolerance" default="0.05" />
+  <arg name="diagnostics_window_time" default="5.0" />
+ 
+  <!-- Push down all topics/nodelets into "camera" namespace -->
+  <group ns="$(arg camera)">
+
+    <!-- Start nodelet manager in provided namespace -->
+    <arg name="manager" value="$(arg camera)_nodelet_manager" />
+    <arg name="debug" default="false" /> <!-- Run manager in GDB? -->
+    <include file="$(find rgbd_launch)/launch/includes/manager.launch.xml">
+      <arg name="name"                value="$(arg manager)" />
+      <arg name="debug"               value="$(arg debug)" />
+      <arg name="num_worker_threads"  value="$(arg num_worker_threads)" />
+    </include>
+
+    <!-- Load driver -->
+    <include if="$(arg load_driver)"
+	     file="$(find freenect_launch)/launch/includes/device.launch.xml">
+      <!-- Could really use some syntactic sugar for this -->
+      <arg name="manager"                   value="$(arg manager)" />
+      <arg name="device_id"                 value="$(arg device_id)" />
+      <arg name="rgb_frame_id"              value="$(arg rgb_frame_id)" />
+      <arg name="depth_frame_id"            value="$(arg depth_frame_id)" />
+      <arg name="rgb_camera_info_url"       value="$(arg rgb_camera_info_url)" />
+      <arg name="depth_camera_info_url"     value="$(arg depth_camera_info_url)" />
+      <arg name="depth_registration"        value="$(arg depth_registration)" />
+      <arg name="data_skip"                 value="$(arg data_skip)" />
+      <arg name="rgb"                       value="$(arg rgb)" />
+      <arg name="ir"                        value="$(arg ir)" />
+      <arg name="depth"                     value="$(arg depth)" />
+      <arg name="depth_registered"          value="$(arg depth_registered)" />
+      <arg name="projector"                 value="$(arg projector)" />
+      <arg name="respawn"                   value="$(arg respawn)" />
+      <arg name="libfreenect_debug"         value="$(arg libfreenect_debug)" />
+      <arg name="enable_rgb_diagnostics"    value="$(arg enable_rgb_diagnostics)" />
+      <arg name="enable_ir_diagnostics"     value="$(arg enable_ir_diagnostics)" />
+      <arg name="enable_depth_diagnostics"  value="$(arg enable_depth_diagnostics)" />
+      <arg name="diagnostics_max_frequency" value="$(arg diagnostics_max_frequency)" />
+      <arg name="diagnostics_min_frequency" value="$(arg diagnostics_min_frequency)" />
+      <arg name="diagnostics_tolerance"     value="$(arg diagnostics_tolerance)" />
+      <arg name="diagnostics_window_time"   value="$(arg diagnostics_window_time)" />
+    </include>
+    
+    <!-- Load standard constellation of processing nodelets -->
+    <include file="$(find rgbd_launch)/launch/includes/processing.launch.xml">
+      <arg name="manager"                         value="$(arg manager)" />
+      <arg name="rgb"                             value="$(arg rgb)" />
+      <arg name="ir"                              value="$(arg ir)" />
+      <arg name="depth"                           value="$(arg depth)" />
+      <arg name="depth_registered"                value="$(arg depth_registered)" />
+      <arg name="projector"                       value="$(arg projector)" />
+      <arg name="respawn"                         value="$(arg respawn)" />
+      <arg name="rgb_processing"                  value="$(arg rgb_processing)" />
+      <arg name="ir_processing"                   value="$(arg ir_processing)" />
+      <arg name="depth_processing"                value="$(arg depth_processing)" />
+      <arg name="depth_registered_processing"     value="$(arg depth_registered_processing)" />
+      <arg name="disparity_processing"            value="$(arg disparity_processing)" />
+      <arg name="disparity_registered_processing" value="$(arg disparity_registered_processing)" />
+      <arg name="hw_registered_processing"        value="$(arg hw_registered_processing)" />
+      <arg name="sw_registered_processing"        value="$(arg sw_registered_processing)" />
+    </include>
+  
+  </group>
+
+  <include if="$(arg publish_tf)"
+	   file="$(find rgbd_launch)/launch/kinect_frames.launch">
+    <arg name="camera" value="$(arg camera)" />
+  </include>
+
+  <node name = "depthcam_read" pkg = "navigator_test" type="depthcam_read" output="screen">
+  </node>
+
+  <include file="$(find navigator_test)/launch/pctl.launch" />
+
+  <node pkg="laser_scan_matcher" type="laser_scan_matcher_node" name="laser_scan_matcher" output="screen">
+    <param name="min_inlier_ratio" type="double" value="0.5" />
+    <param name="max_iterations" type="int" value="50" />
+    <param name="max_correspondence_dist" type="double" value="1.2" />
+    <param name="max_angle_diff" type="double" value="0.1" />
+    <param name="scan_topic" type="string" value="/horizontal_laser_2d" />
+    <param name="use_imu" type="bool" value="false" /> 
+  </node>
+</launch>

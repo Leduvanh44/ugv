@@ -1,0 +1,200 @@
+<?xml version='1.0'?>
+
+<robot name="st_gazebo" xmlns:xacro="http://ros.org/wiki/xacro">
+
+  <gazebo>
+    <plugin name="differential_drive_controller" filename="libgazebo_ros_diff_drive.so">
+      <legacyMode>false</legacyMode>
+      <alwaysOn>true</alwaysOn>
+      <updateRate>10</updateRate>
+      <leftJoint>left_wheel_hinge</leftJoint>
+      <rightJoint>right_wheel_hinge</rightJoint>
+      <wheelSeparation>0.30</wheelSeparation>
+      <wheelDiameter>0.2</wheelDiameter>
+	    <publishWheelTF>True</publishWheelTF>
+      <torque>30</torque>
+      <commandTopic>cmd_vel</commandTopic>
+      <odometryTopic>odom</odometryTopic>
+      <odometryFrame>odom</odometryFrame>
+      <robotBaseFrame>base_link</robotBaseFrame>
+    </plugin>
+  </gazebo>
+
+  <gazebo reference="base_link">
+      <material>
+        Gazebo/Gray
+      </material>
+  </gazebo> 
+
+  <gazebo reference="container_link">
+      <material>
+        Gazebo/Gray
+      </material>
+  </gazebo> 
+
+  <gazebo reference="lid_container_link">
+      <material>
+        Gazebo/Blue
+      </material>
+  </gazebo> 
+
+  <gazebo reference="left_wheel">
+      <material>
+        Gazebo/Black
+      </material>
+  </gazebo> 
+
+  <gazebo reference="right_wheel">
+      <material>
+        Gazebo/Black
+      </material>
+  </gazebo> 
+
+  <gazebo reference="wheel_front_right_link">
+      <material>
+        Gazebo/Black
+      </material>
+  </gazebo> 
+
+  <gazebo reference="wheel_front_left_link">
+      <material>
+        Gazebo/Black
+      </material>
+  </gazebo> 
+
+<gazebo reference="hokuyo_link">
+    <sensor type="ray" name="head_hokuyo_sensor">
+      <pose>0 0 0 0 0 0</pose>
+      <visualize>false</visualize>
+      <update_rate>40</update_rate>
+      <ray>
+        <scan>
+          <horizontal>
+            <samples>720</samples>
+            <resolution>1</resolution>
+            <min_angle>-1.570796</min_angle>
+            <max_angle>1.570796</max_angle>
+          </horizontal>
+        </scan>
+        <range>
+          <min>0.10</min>
+          <max>30.0</max>
+          <resolution>0.01</resolution>
+        </range>
+        <noise>
+          <type>gaussian</type>
+
+          <!-- Noise parameters based on published spec for Hokuyo laser
+               achieving "+-30mm" accuracy at range < 10m.  A mean of 0.0m and
+               stddev of 0.01m will put 99.7% of samples within 0.03m of the true
+               reading. -->
+
+          <mean>0.0</mean>
+          <stddev>0.01</stddev>
+        </noise>
+      </ray>
+      <plugin name="gazebo_ros_head_hokuyo_controller" filename="libgazebo_ros_laser.so">
+        <topicName>/st_scan</topicName>
+        <frameName>base_link</frameName>
+      </plugin>
+    </sensor>
+  </gazebo>
+<gazebo>
+    <plugin name="imu_sensor" filename="libgazebo_ros_imu.so">
+        <alwaysOn>true</alwaysOn>
+        <updateRate>50.0</updateRate> 
+        <bodyName>base_link</bodyName>
+        <frameName>base_link</frameName>
+        <topicName>imu</topicName>
+        
+        <serviceName>imu_service</serviceName>
+        <gaussianNoise>0.01</gaussianNoise> 
+        <gyroscopeNoiseDensity>0.0001</gyroscopeNoiseDensity>
+        <gyroscopeRandomWalk>0.0001</gyroscopeRandomWalk>
+        <gyroscopeBiasCorrelationTime>1.0e3</gyroscopeBiasCorrelationTime> 
+        
+        <accelerometerNoiseDensity>0.0001</accelerometerNoiseDensity> 
+        <accelerometerRandomWalk>0.0001</accelerometerRandomWalk>
+        <accelerometerBiasCorrelationTime>1.0e3</accelerometerBiasCorrelationTime> 
+        
+        <orientationNoise>0.001</orientationNoise>
+        <linearAccelerationNoise>0.001</linearAccelerationNoise>
+        <angularVelocityNoise>0.001</angularVelocityNoise> 
+    </plugin>
+</gazebo>
+
+
+<gazebo reference="gps_link">
+  <material>Gazebo/Blue</material>
+</gazebo>
+
+	<gazebo reference="depth">
+  		<material>Gazebo/Black</material>
+	</gazebo>
+
+<gazebo reference="depth">
+  <sensor name="depth_camera" type="depth">
+    <update_rate>20</update_rate>
+    <camera>
+      <horizontal_fov>2.355</horizontal_fov>
+      <image>
+        <width>640</width>
+        <height>480</height>
+        <format>R8G8B8</format>
+      </image>
+      <clip>
+        <near>0.001</near>
+        <far>5</far>
+      </clip>
+    </camera>
+    <plugin name="camera_controller" filename="libgazebo_ros_openni_kinect.so">
+      <baseline>0.2</baseline>
+      <alwaysOn>true</alwaysOn>
+      <updateRate>10.0</updateRate>
+      <cameraName>camera</cameraName>
+      <imageTopicName>/camera/rgb/image_raw</imageTopicName>
+      <depthImageTopicName>/camera/depth/image_raw</depthImageTopicName>
+      <pointCloudTopicName>/camera/depth/points</pointCloudTopicName>
+      <cameraInfoTopicName>/camera/rgb/camera_info</cameraInfoTopicName>              
+      <depthImageCameraInfoTopicName>/camera/depth/camera_info</depthImageCameraInfoTopicName> 
+      <frameName>depth_link</frameName>
+      <pointCloudCutoff>0.01</pointCloudCutoff>
+      <pointCloudCutoffMax>5.0</pointCloudCutoffMax>
+      <distortionK1>0.00000001</distortionK1>
+      <distortionK2>0.00000001</distortionK2>
+      <distortionK3>0.00000001</distortionK3>
+      <distortionT1>0.00000001</distortionT1>
+      <distortionT2>0.00000001</distortionT2>
+      <CxPrime>0</CxPrime>
+      <Cx>0</Cx>
+      <Cy>0</Cy>
+      <focalLength>0</focalLength>
+      <hackBaseline>0.5</hackBaseline>
+    </plugin>
+  </sensor>
+</gazebo>
+
+<gazebo>
+    <plugin name="gazebo_ros_gps" filename="libhector_gazebo_ros_gps.so">
+      <updateRate>4.0</updateRate>
+      <bodyName>gps_link</bodyName>
+      <frameId>base_link</frameId>
+      <topicName>gps</topicName>
+      <velocityTopicName>gps/fix_velocity</velocityTopicName>
+      <referenceLatitude>-30.06022459407145675</referenceLatitude>
+      <referenceLongitude>-51.173913575780311191</referenceLongitude>
+      <referenceHeading>90</referenceHeading>
+      <referenceAltitude>10</referenceAltitude>
+      <offset>0 0 0</offset>
+      <drift>0.001 0.001 0.001</drift>
+      <gaussianNoise>0.05 0.05 0.05</gaussianNoise>
+      <velocityDrift>0.001 0.001 0.001</velocityDrift>
+      <velocityGaussianNoise>0.5 0.5 0.5</velocityGaussianNoise>
+    </plugin>
+</gazebo>
+
+
+
+
+
+</robot>
